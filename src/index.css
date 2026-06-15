@@ -1,0 +1,242 @@
+@import "tailwindcss";
+
+@theme {
+  --color-neutral-900: hsl(243, 96%, 9%);
+  --color-neutral-800: hsl(243, 27%, 20%);
+  --color-neutral-700: hsl(243, 23%, 24%);
+  --color-neutral-600: hsl(243, 23%, 30%);
+  --color-neutral-300: hsl(240, 6%, 70%);
+  --color-neutral-200: hsl(250, 6%, 84%);
+  --color-neutral-0: hsl(0, 0%, 100%);
+  
+  --color-brand-orange: hsl(28, 100%, 52%);
+  --color-brand-blue: hsl(233, 67%, 56%);
+  --color-brand-blue-dark: hsl(248, 70%, 36%);
+
+  --font-sans: 'DM Sans', sans-serif;
+  --font-display: 'Bricolage Grotesque', sans-serif;
+}
+
+/* Base Reset & Custom styles */
+body {
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+  background-color: #0b0c10;
+  color: #f3f4f6;
+  margin: 0;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  border-inline: none;
+  text-align: left;
+}
+
+/* Glassmorphism System */
+.glass-card {
+  background: rgba(15, 17, 26, 0.35);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  transition: border-color 0.3s, background-color 0.3s, transform 0.2s;
+}
+
+.glass-card-hover:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.glass-input {
+  background: rgba(15, 17, 26, 0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.glass-input:focus {
+  border-color: rgba(233, 67, 56, 0.5);
+  box-shadow: 0 0 0 2px rgba(233, 67, 56, 0.2);
+}
+
+/* Hide scrollbars but keep functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Custom Scrollbar for modern scroll areas */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 999px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Rain Effect Animation */
+@keyframes rain {
+  0% {
+    transform: translateY(-80px) rotate(15deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.7;
+  }
+  80% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(105vh) rotate(15deg);
+    opacity: 0;
+  }
+}
+
+.rain-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.rain-drop {
+  position: absolute;
+  background: linear-gradient(transparent, rgba(147, 197, 253, 0.4));
+  width: 1.5px;
+  height: 60px;
+  animation: rain 1.2s linear infinite;
+  pointer-events: none;
+}
+
+/* Snow Effect Animation */
+@keyframes snow {
+  0% {
+    transform: translateY(-20px) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(105vh) translateX(80px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.snow-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.snow-flake {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  animation: snow 6s linear infinite;
+  pointer-events: none;
+}
+
+/* Starry Night Animation */
+@keyframes pulseStar {
+  0%, 100% {
+    transform: scale(0.8);
+    opacity: 0.2;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.9;
+  }
+}
+
+.stars-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.star {
+  position: absolute;
+  background: #ffffff;
+  border-radius: 50%;
+  animation: pulseStar 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Clouds Animation */
+@keyframes drift {
+  0% {
+    transform: translateX(-15%);
+  }
+  100% {
+    transform: translateX(115%);
+  }
+}
+
+.clouds-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.4;
+}
+
+.cloud-layer {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+  animation: drift 120s linear infinite;
+}
+
+/* Storm Lightning Flash Animation */
+@keyframes lightning {
+  0%, 92%, 94%, 98%, 100% {
+    opacity: 0;
+  }
+  93%, 97% {
+    opacity: 0.35;
+    background: #e0f2fe;
+  }
+}
+
+.lightning-flash {
+  position: absolute;
+  inset: 0;
+  animation: lightning 7s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Focus outline system for accessibility */
+*:focus-visible {
+  outline: 2px solid rgba(59, 130, 246, 0.6);
+  outline-offset: 2px;
+}
